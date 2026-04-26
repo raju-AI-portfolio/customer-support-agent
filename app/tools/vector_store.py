@@ -1,24 +1,36 @@
-import json
 import os
+import json
 
-# ---------------- LOAD DATA ----------------
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-file_path = os.path.join(BASE_DIR, "data", "clean_products.json")
+# ---------------- PATH SETUP ----------------
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+FILE_PATH = os.path.join(BASE_DIR, "data", "clean_products.json")
 
-with open(file_path) as f:
-    products = json.load(f)
 
-# 🔴 DEBUG (kept for visibility)
-print("🚨 VECTOR STORE LOADED")
-print("🚨 FILE:", file_path)
-print("🚨 COUNT:", len(products))
-print("🚨 SAMPLE:", products[0].get("name"))
+# ---------------- LOAD FUNCTION (SAFE) ----------------
+def load_products():
+    try:
+        with open(FILE_PATH, "r") as f:
+            products = json.load(f)
+
+        print("✅ PRODUCTS LOADED")
+        print("📂 FILE:", FILE_PATH)
+        print("📦 COUNT:", len(products))
+
+        return products
+
+    except Exception as e:
+        print("❌ ERROR LOADING PRODUCTS:", str(e))
+        return []
 
 
 # ---------------- SIMPLE SEARCH ----------------
 def search_products(query: str, top_k=5):
-    query = query.lower()
+    products = load_products()
 
+    if not products:
+        return []
+
+    query = query.lower()
     scored = []
 
     for product in products:
@@ -27,9 +39,7 @@ def search_products(query: str, top_k=5):
             .lower()
         )
 
-        # simple relevance scoring
         score = 0
-
         for word in query.split():
             if word in text:
                 score += 1
