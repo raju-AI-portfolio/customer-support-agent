@@ -147,4 +147,216 @@
     "id": 17,
     "name": "Canon EOS 1500D",
     "category": "camera dslr",
-    "description": "24.1MP DSLR camera Full HD video recording 9 point autofocus Wi-Fi NFC connectivity ideal for beginners photography
+    "description": "24.1MP DSLR camera Full HD video recording 9 point autofocus Wi-Fi NFC connectivity ideal for beginners photography",
+    "price": 34999,
+    "brand": "Canon",
+    "rating": 4.5
+  },
+  {
+    "id": 18,
+    "name": "Apple MacBook Air M2",
+    "category": "laptop computer",
+    "description": "13.6 inch Liquid Retina display Apple M2 chip 8GB RAM 256GB SSD 18 hours battery life thin light laptop macbook",
+    "price": 114999,
+    "brand": "Apple",
+    "rating": 4.9
+  },
+  {
+    "id": 19,
+    "name": "Dell XPS 15",
+    "category": "laptop computer",
+    "description": "15.6 inch OLED display Intel Core i7 13th Gen 16GB RAM 512GB SSD premium laptop for professionals creators",
+    "price": 149999,
+    "brand": "Dell",
+    "rating": 4.7
+  },
+  {
+    "id": 20,
+    "name": "iPad Air 5th Gen",
+    "category": "tablet ipad",
+    "description": "10.9 inch Liquid Retina display Apple M1 chip 64GB storage Touch ID Wi-Fi tablet ideal for students creative work",
+    "price": 59999,
+    "brand": "Apple",
+    "rating": 4.8
+  },
+  {
+    "id": 21,
+    "name": "Samsung Galaxy Tab S9",
+    "category": "tablet android",
+    "description": "11 inch Dynamic AMOLED display Snapdragon 8 Gen 2 8GB RAM 128GB storage IP68 water resistant Android tablet",
+    "price": 72999,
+    "brand": "Samsung",
+    "rating": 4.6
+  },
+  {
+    "id": 22,
+    "name": "Apple Watch Series 9",
+    "category": "smartwatch wearable",
+    "description": "45mm Always On Retina display S9 chip health monitoring ECG blood oxygen sleep tracking fitness smartwatch",
+    "price": 41999,
+    "brand": "Apple",
+    "rating": 4.8
+  },
+  {
+    "id": 23,
+    "name": "Samsung Galaxy Watch 6",
+    "category": "smartwatch wearable",
+    "description": "44mm AMOLED display health tracking body composition sleep coaching heart rate GPS smartwatch Android",
+    "price": 24999,
+    "brand": "Samsung",
+    "rating": 4.4
+  },
+  {
+    "id": 24,
+    "name": "Garmin Forerunner 255",
+    "category": "smartwatch wearable fitness",
+    "description": "GPS running smartwatch advanced training features heart rate VO2 max sleep tracking 14 days battery life fitness",
+    "price": 29999,
+    "brand": "Garmin",
+    "rating": 4.6
+  },
+  {
+    "id": 25,
+    "name": "Sony Alpha A7III",
+    "category": "camera mirrorless",
+    "description": "24.2MP full frame mirrorless camera 4K video 693 phase detection autofocus points 10fps continuous shooting photography",
+    "price": 189999,
+    "brand": "Sony",
+    "rating": 4.8
+  },
+  {
+    "id": 26,
+    "name": "GoPro Hero 12 Black",
+    "category": "camera action",
+    "description": "5.3K video action camera waterproof HyperSmooth 6.0 stabilization HDR TimeWarp adventure sports outdoor camera",
+    "price": 39999,
+    "brand": "GoPro",
+    "rating": 4.6
+  },
+  {
+    "id": 27,
+    "name": "LG OLED C3 55 inch",
+    "category": "television tv oled",
+    "description": "55 inch 4K OLED smart TV perfect blacks Dolby Vision Atmos AI processor gaming G-Sync webOS television",
+    "price": 139999,
+    "brand": "LG",
+    "rating": 4.8
+  },
+  {
+    "id": 28,
+    "name": "Sony Bravia 55 inch 4K",
+    "category": "television tv",
+    "description": "55 inch 4K HDR Android smart TV X1 processor Dolby Vision Atmos HDMI 2.1 Google TV Netflix gaming television",
+    "price": 79999,
+    "brand": "Sony",
+    "rating": 4.6
+  },
+  {
+    "id": 29,
+    "name": "PlayStation 5",
+    "category": "gaming console",
+    "description": "Next gen gaming console 4K gaming 120fps ray tracing SSD ultra fast loading DualSense haptic feedback gaming",
+    "price": 54999,
+    "brand": "Sony",
+    "rating": 4.8
+  },
+  {
+    "id": 30,
+    "name": "Xbox Series X",
+    "category": "gaming console",
+    "description": "4K gaming console 120fps Quick Resume Game Pass 1TB SSD backward compatible Xbox gaming",
+    "price": 49999,
+    "brand": "Microsoft",
+    "rating": 4.7
+  },
+  {
+    "id": 31,
+    "name": "Logitech G502 X Gaming Mouse",
+    "category": "gaming accessories mouse",
+    "description": "Wired gaming mouse 25600 DPI HERO 25K sensor 13 programmable buttons ergonomic design PC gaming accessories",
+    "price": 5999,
+    "brand": "Logitech",
+    "rating": 4.6
+  },
+  {
+    "id": 32,
+    "name": "Razer BlackWidow V3 Keyboard",
+    "category": "gaming accessories keyboard",
+    "description": "Mechanical gaming keyboard Razer Green switches RGB Chroma lighting anti-ghosting wrist rest PC gaming",
+    "price": 10999,
+    "brand": "Razer",
+    "rating": 4.5
+  },
+  {
+    "id": 33,
+    "name": "Anker PowerCore 26800mAh",
+    "category": "power bank portable charger",
+    "description": "26800mAh high capacity power bank dual USB output fast charging compatible iPhone Android portable charger travel",
+    "price": 3999,
+    "brand": "Anker",
+    "rating": 4.5
+  },
+  {
+    "id": 34,
+    "name": "Xiaomi 67W Fast Charger",
+    "category": "charger accessories",
+    "description": "67W turbo fast charger USB Type-C compatible Xiaomi OnePlus Samsung Android smartphones quick charging adapter",
+    "price": 999,
+    "brand": "Xiaomi",
+    "rating": 4.3
+  },
+  {
+    "id": 35,
+    "name": "TP-Link Archer AX73 WiFi 6 Router",
+    "category": "networking router wifi",
+    "description": "WiFi 6 router AX5400 dual band 6 antennas beamforming MU-MIMO parental controls home office networking internet",
+    "price": 9999,
+    "brand": "TP-Link",
+    "rating": 4.5
+  },
+  {
+    "id": 36,
+    "name": "HP LaserJet MFP M140w",
+    "category": "printer laser",
+    "description": "Wireless monochrome laser printer scanner copier compact design Wi-Fi USB mobile printing office home printer",
+    "price": 14999,
+    "brand": "HP",
+    "rating": 4.3
+  },
+  {
+    "id": 37,
+    "name": "Wacom Intuos Small",
+    "category": "tablet drawing graphics",
+    "description": "Graphics drawing tablet 4 customisable keys pressure sensitive pen creative software included digital art design",
+    "price": 5999,
+    "brand": "Wacom",
+    "rating": 4.4
+  },
+  {
+    "id": 38,
+    "name": "Kindle Paperwhite 11th Gen",
+    "category": "ereader kindle books",
+    "description": "6.8 inch e-reader 300ppi display waterproof IPX8 adjustable warm light 10 weeks battery wireless kindle books reading",
+    "price": 13999,
+    "brand": "Amazon",
+    "rating": 4.7
+  },
+  {
+    "id": 39,
+    "name": "DJI Mini 3 Pro Drone",
+    "category": "drone camera aerial",
+    "description": "Lightweight foldable drone 4K HDR video 48MP photos obstacle sensing 34 min flight time aerial photography",
+    "price": 74999,
+    "brand": "DJI",
+    "rating": 4.7
+  },
+  {
+    "id": 40,
+    "name": "Philips Hue Smart Bulb Starter Kit",
+    "category": "smart home lighting",
+    "description": "Smart LED bulbs 16 million colours voice control Alexa Google Home app controlled smart home lighting kit",
+    "price": 7999,
+    "brand": "Philips",
+    "rating": 4.4
+  }
+]
