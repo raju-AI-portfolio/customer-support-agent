@@ -11,39 +11,79 @@ if not api_key:
 
 client = OpenAI(api_key=api_key)
 
-# ── GUARDRAILS ───────────────────────────────────────────────────────
+# ── BLOCKED PATTERNS — harmful / malicious ───────────────────────────
 BLOCKED_PATTERNS = [
-    # Harmful content
     "bomb", "weapon", "explosive", "poison", "drug",
     "how to kill", "how to hurt", "murder", "suicide", "self harm",
-    # Hacking / exploits
     "hack", "exploit", "malware", "virus", "ransomware",
     "sql injection", "xss", "ddos", "phishing",
-    # Prompt injection attempts
     "ignore previous", "ignore all", "forget instructions",
     "ignore your instructions", "disregard", "override",
     "jailbreak", "dan mode", "pretend you are",
     "you are now", "act as", "roleplay as",
-    # System data extraction
     "show api key", "show system prompt", "reveal prompt",
     "what is your prompt", "show credentials", "print os.environ",
 ]
 
-def is_unsafe_query(query: str) -> bool:
-    q = query.lower()
-    return any(pattern in q for pattern in BLOCKED_PATTERNS)
+# ── ALLOWED TOPICS — customer support only ───────────────────────────
+ALLOWED_TOPICS = [
+    # Orders
+    "order", "track", "tracking", "delivery", "shipped",
+    "dispatch", "package", "parcel", "arrive", "status",
+    # Products
+    "product", "recommend", "suggestion", "buy", "purchase",
+    "price", "cost", "mobile", "laptop", "phone", "electronics",
+    "appliance", "item", "best", "compare", "review",
+    # Returns & Refunds
+    "return", "refund", "money back", "exchange", "replace",
+    "replacement", "cancel", "cancellation",
+    # Complaints
+    "complaint", "broken", "damaged", "defective", "issue",
+    "problem", "fault", "not working", "wrong item",
+    # Policies
+    "policy", "policies", "warranty", "guarantee", "shipping",
+    "terms", "condition", "rule",
+    # General support
+    "help", "support", "assist", "contact", "agent", "service",
+]
 
+# ── GUARDRAIL RESPONSES ──────────────────────────────────────────────
 UNSAFE_RESPONSE = (
     "⚠️ I can only assist with customer support queries "
     "such as orders, products, returns, and complaints."
 )
 
+OFF_TOPIC_RESPONSE = (
+    "🛍️ I'm AssistIQ, your customer support assistant. "
+    "I can only help with:\n"
+    "• Order tracking\n"
+    "• Product recommendations\n"
+    "• Returns & refunds\n"
+    "• Complaints\n"
+    "• Store policies\n\n"
+    "Please ask me something related to your shopping experience!"
+)
+
+# ── GUARDRAIL FUNCTIONS ──────────────────────────────────────────────
+def is_unsafe_query(query: str) -> bool:
+    q = query.lower()
+    return any(pattern in q for pattern in BLOCKED_PATTERNS)
+
+def is_off_topic(query: str) -> bool:
+    q = query.lower()
+    return not any(topic in q for topic in ALLOWED_TOPICS)
+
 # ── COMMON LLM CALL ──────────────────────────────────────────────────
 def call_llm(prompt: str, query: str = "", temperature: float = 0.2):
-    # 🔒 Block unsafe queries BEFORE hitting the LLM
+    # 🔒 Block harmful queries
     if query and is_unsafe_query(query):
         print(f"🚫 Blocked unsafe query: {query}")
         return UNSAFE_RESPONSE
+
+    # 🔒 Block off-topic queries
+    if query and is_off_topic(query):
+        print(f"🚫 Blocked off-topic query: {query}")
+        return OFF_TOPIC_RESPONSE
 
     start_time = time.time()
     try:
