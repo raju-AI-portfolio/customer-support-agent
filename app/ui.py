@@ -311,7 +311,16 @@ footer { visibility: hidden !important; display: none !important; }
     color: var(--c-muted) !important;
     font-weight: 400 !important;
 }
-
+/* ── Force sidebar always visible ───────────────────────────────── */
+[data-testid="collapsedControl"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+[data-testid="stSidebar"][aria-expanded="false"] {
+    display: flex !important;
+    width: 258px !important;
+    min-width: 258px !important;
+}
 /* ── SCROLLBAR ───────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
