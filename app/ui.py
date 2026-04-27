@@ -280,25 +280,49 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
 }
 
 /* ── SEND BUTTON — BRIGHT BLUE WITH WHITE ARROW ── */
-[data-testid="stChatInput"] button {
+/* ── Send button — blue background, white arrow ── */
+[data-testid="stChatInput"] button,
+[data-testid="stChatInput"] button:focus,
+[data-testid="stChatInput"] button:active {
     background: #2563EB !important;
+    background-color: #2563EB !important;
     border-radius: 50% !important;
     border: none !important;
+    outline: none !important;
     box-shadow: 0 4px 14px rgba(37,99,235,0.40) !important;
     transition: all 0.15s !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 [data-testid="stChatInput"] button:hover {
     background: #1D4ED8 !important;
+    background-color: #1D4ED8 !important;
     transform: scale(1.08) !important;
     box-shadow: 0 6px 20px rgba(37,99,235,0.50) !important;
 }
-/* White arrow icon */
-[data-testid="stChatInput"] button svg,
-[data-testid="stChatInput"] button svg path,
-[data-testid="stChatInput"] button svg * {
+/* Force ALL svg children white */
+[data-testid="stChatInput"] button svg {
     fill: #FFFFFF !important;
     color: #FFFFFF !important;
-    stroke: none !important;
+    width: 18px !important;
+    height: 18px !important;
+    filter: brightness(0) invert(1) !important;
+}
+[data-testid="stChatInput"] button svg *,
+[data-testid="stChatInput"] button svg path,
+[data-testid="stChatInput"] button svg circle,
+[data-testid="stChatInput"] button svg rect,
+[data-testid="stChatInput"] button svg polyline,
+[data-testid="stChatInput"] button svg line {
+    fill: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+    color: #FFFFFF !important;
 }
 
 /* ── SPINNER ── */
