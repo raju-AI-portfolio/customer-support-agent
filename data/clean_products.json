@@ -102,4 +102,49 @@
     "id": 12,
     "name": "Sony WH-1000XM5",
     "category": "headphones",
-    "description": "Industry leading noise
+    "description": "Industry leading noise cancellation headphones 30 hours battery multipoint connection speak to chat premium sound wireless",
+    "price": 29999,
+    "brand": "Sony",
+    "rating": 4.8
+  },
+  {
+    "id": 13,
+    "name": "boAt Rockerz 450",
+    "category": "headphones",
+    "description": "Over ear wireless headphones 15 hours battery 40mm drivers foldable design budget friendly affordable",
+    "price": 1499,
+    "brand": "boAt",
+    "rating": 4.1
+  },
+  {
+    "id": 14,
+    "name": "LG 1.5 Ton 5 Star Inverter AC",
+    "category": "appliance air conditioner",
+    "description": "1.5 ton split AC 5 star energy rating dual inverter compressor Wi-Fi control auto clean 4 way swing air conditioner",
+    "price": 42999,
+    "brand": "LG",
+    "rating": 4.5
+  },
+  {
+    "id": 15,
+    "name": "Samsung 253L Double Door Refrigerator",
+    "category": "appliance refrigerator",
+    "description": "253 litre double door refrigerator digital inverter technology frost free 5 star energy rating convertible modes fridge",
+    "price": 28999,
+    "brand": "Samsung",
+    "rating": 4.4
+  },
+  {
+    "id": 16,
+    "name": "Mi Smart TV 4A Pro 43",
+    "category": "television tv",
+    "description": "43 inch Full HD Android smart TV PatchWall 4 built-in Google Assistant Dolby audio bezel-less design television",
+    "price": 24999,
+    "brand": "Mi",
+    "rating": 4.3
+  },
+  {
+    "id": 17,
+    "name": "Canon EOS 1500D",
+    "category": "camera dslr",
+    "description": "24.1MP DSLR camera Full HD video recording 9 point autofocus Wi-Fi NFC connectivity ideal for beginners photography
