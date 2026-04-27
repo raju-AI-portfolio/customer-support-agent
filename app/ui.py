@@ -15,18 +15,17 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,500&display=swap');
 
 /* ── GLOBAL ── */
-html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
+html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     font-family: 'Inter', sans-serif !important;
     background: #F4F6FB !important;
 }
 
-/* ── HIDE STREAMLIT CHROME ── */
+/* ── HIDE CHROME ── */
 #MainMenu, [data-testid="stToolbar"], [data-testid="stDecoration"],
-[data-testid="stStatusWidget"], footer,
-[data-testid="collapsedControl"] {
+[data-testid="stStatusWidget"], footer, [data-testid="collapsedControl"] {
     visibility: hidden !important;
     display: none !important;
 }
@@ -44,7 +43,6 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     font-weight: 600 !important;
     color: #1A202C !important;
     letter-spacing: -0.02em !important;
-    line-height: 1.2 !important;
 }
 
 [data-testid="stMain"] hr {
@@ -62,31 +60,32 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     font-style: normal !important;
 }
 
-/* ════════════════════════════════════════
-   SIDEBAR — MEDIUM DARK SLATE
-   ════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════ */
 [data-testid="stSidebar"] {
-    background: #1E293B !important;
-    border-right: 2px solid #0F172A !important;
-    min-width: 270px !important;
-    max-width: 280px !important;
+    background-color: #1E2A3A !important;
+    border-right: 2px solid #2D3F55 !important;
+    min-width: 260px !important;
+    max-width: 270px !important;
 }
 
 [data-testid="stSidebar"] > div:first-child {
-    background: #1E293B !important;
+    background-color: #1E2A3A !important;
     padding-top: 1.4rem !important;
 }
 
-/* ALL sidebar text */
+/* Sidebar ALL text nodes */
 [data-testid="stSidebar"] p,
 [data-testid="stSidebar"] span,
 [data-testid="stSidebar"] div,
 [data-testid="stSidebar"] li,
-[data-testid="stSidebar"] label {
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] small {
+    color: #C8D8E8 !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 13px !important;
     font-weight: 400 !important;
-    color: #CBD5E1 !important;
     line-height: 1.6 !important;
 }
 
@@ -100,17 +99,17 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
 [data-testid="stSidebar"] h1,
 [data-testid="stSidebar"] h2,
 [data-testid="stSidebar"] h3 {
+    color: #5A7A9A !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 10.5px !important;
     font-weight: 700 !important;
-    color: #64748B !important;
     letter-spacing: 0.12em !important;
     text-transform: uppercase !important;
     margin: 0 0 8px 0 !important;
     padding: 0 !important;
+    background: transparent !important;
 }
 
-/* Brand title */
 [data-testid="stSidebar"] h2:first-of-type {
     font-family: 'Playfair Display', serif !important;
     font-size: 20px !important;
@@ -122,34 +121,39 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     margin-bottom: 2px !important;
 }
 
-/* Sidebar caption */
-[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p {
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] * {
+    color: #5A7A9A !important;
     font-size: 10px !important;
-    color: #64748B !important;
-    letter-spacing: 0.08em !important;
+    letter-spacing: 0.1em !important;
     text-transform: uppercase !important;
     font-weight: 600 !important;
     font-style: normal !important;
 }
 
-/* Sidebar dividers */
 [data-testid="stSidebar"] hr {
     border: none !important;
     border-top: 1px solid rgba(255,255,255,0.1) !important;
     margin: 12px 0 !important;
 }
 
-/* ── SIDEBAR BUTTONS ── */
-[data-testid="stSidebar"] [data-testid="stButton"] > button {
+/* ═══════════════════════════════════════
+   SIDEBAR BUTTONS — override Streamlit red
+═══════════════════════════════════════ */
+[data-testid="stSidebar"] .stButton > button,
+[data-testid="stSidebar"] [data-testid="stButton"] > button,
+[data-testid="stSidebar"] button[kind="secondary"],
+[data-testid="stSidebar"] button {
     width: 100% !important;
-    background: rgba(255,255,255,0.06) !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
+    background-color: rgba(255,255,255,0.07) !important;
+    background: rgba(255,255,255,0.07) !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
     border-radius: 8px !important;
-    color: #CBD5E1 !important;
+    color: #C8D8E8 !important;
     font-size: 12.5px !important;
     font-weight: 500 !important;
     font-family: 'Inter', sans-serif !important;
-    padding: 9px 12px !important;
+    padding: 8px 12px !important;
     margin-bottom: 5px !important;
     text-align: left !important;
     transition: all 0.15s ease !important;
@@ -157,49 +161,65 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     white-space: normal !important;
     height: auto !important;
     min-height: unset !important;
+    box-shadow: none !important;
 }
 
-/* Force inner text visible */
+/* Every child of sidebar button */
+[data-testid="stSidebar"] .stButton > button *,
 [data-testid="stSidebar"] [data-testid="stButton"] > button *,
-[data-testid="stSidebar"] [data-testid="stButton"] > button p,
-[data-testid="stSidebar"] [data-testid="stButton"] > button div,
-[data-testid="stSidebar"] [data-testid="stButton"] > button span {
-    color: #CBD5E1 !important;
+[data-testid="stSidebar"] button[kind="secondary"] *,
+[data-testid="stSidebar"] button * {
+    color: #C8D8E8 !important;
     font-size: 12.5px !important;
     font-weight: 500 !important;
     font-family: 'Inter', sans-serif !important;
+    background: transparent !important;
 }
 
-[data-testid="stSidebar"] [data-testid="stButton"] > button:hover {
-    background: rgba(59,130,246,0.25) !important;
-    border-color: #3B82F6 !important;
+[data-testid="stSidebar"] .stButton > button:hover,
+[data-testid="stSidebar"] [data-testid="stButton"] > button:hover,
+[data-testid="stSidebar"] button:hover {
+    background-color: rgba(37,99,235,0.25) !important;
+    background: rgba(37,99,235,0.25) !important;
+    border-color: rgba(37,99,235,0.5) !important;
     color: #FFFFFF !important;
     transform: translateX(3px) !important;
+    box-shadow: none !important;
 }
 
+[data-testid="stSidebar"] .stButton > button:hover *,
 [data-testid="stSidebar"] [data-testid="stButton"] > button:hover *,
-[data-testid="stSidebar"] [data-testid="stButton"] > button:hover p,
-[data-testid="stSidebar"] [data-testid="stButton"] > button:hover div,
-[data-testid="stSidebar"] [data-testid="stButton"] > button:hover span {
+[data-testid="stSidebar"] button:hover * {
     color: #FFFFFF !important;
+    background: transparent !important;
 }
 
-/* Clear Chat — red tint */
-[data-testid="stSidebar"] [data-testid="stButton"]:last-of-type > button,
-[data-testid="stSidebar"] [data-testid="stButton"]:last-of-type > button * {
+/* Clear Chat button — last button red tint */
+[data-testid="stSidebar"] .stButton:last-child > button,
+[data-testid="stSidebar"] [data-testid="stButton"]:last-of-type > button {
+    background-color: rgba(239,68,68,0.12) !important;
     background: rgba(239,68,68,0.12) !important;
-    border-color: rgba(239,68,68,0.25) !important;
-    color: #FCA5A5 !important;
+    border-color: rgba(239,68,68,0.3) !important;
+    color: #FC8181 !important;
     font-weight: 600 !important;
 }
-[data-testid="stSidebar"] [data-testid="stButton"]:last-of-type > button:hover,
-[data-testid="stSidebar"] [data-testid="stButton"]:last-of-type > button:hover * {
+
+[data-testid="stSidebar"] .stButton:last-child > button *,
+[data-testid="stSidebar"] [data-testid="stButton"]:last-of-type > button * {
+    color: #FC8181 !important;
+    background: transparent !important;
+}
+
+[data-testid="stSidebar"] .stButton:last-child > button:hover,
+[data-testid="stSidebar"] [data-testid="stButton"]:last-of-type > button:hover {
+    background-color: rgba(239,68,68,0.25) !important;
     background: rgba(239,68,68,0.25) !important;
-    border-color: #F87171 !important;
     color: #FFFFFF !important;
 }
 
-/* ── CHAT MESSAGES ── */
+/* ═══════════════════════════════════════
+   CHAT MESSAGES
+═══════════════════════════════════════ */
 [data-testid="stChatMessage"] {
     background: transparent !important;
     border: none !important;
@@ -214,7 +234,6 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     margin: 0 !important;
 }
 
-/* User bubble */
 [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"])
     [data-testid="stMarkdownContainer"] {
     background: #2563EB !important;
@@ -225,11 +244,8 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     margin-left: auto !important;
 }
 [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"])
-    [data-testid="stMarkdownContainer"] p {
-    color: #FFFFFF !important;
-}
+    [data-testid="stMarkdownContainer"] p { color: #FFFFFF !important; }
 
-/* Assistant bubble */
 [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
     [data-testid="stMarkdownContainer"] {
     background: #FFFFFF !important;
@@ -240,11 +256,8 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     max-width: 78% !important;
 }
 [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
-    [data-testid="stMarkdownContainer"] p {
-    color: #1A202C !important;
-}
+    [data-testid="stMarkdownContainer"] p { color: #1A202C !important; }
 
-/* Latency caption */
 [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
     [data-testid="stCaptionContainer"] p {
     font-size: 0.72rem !important;
@@ -255,14 +268,15 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     font-style: normal !important;
 }
 
-/* ── CHAT INPUT ── */
+/* ═══════════════════════════════════════
+   CHAT INPUT + SEND BUTTON
+═══════════════════════════════════════ */
 [data-testid="stChatInput"] {
     border-radius: 50px !important;
     border: 1.5px solid #CBD5E0 !important;
     background: #FFFFFF !important;
     box-shadow: 0 4px 16px rgba(0,0,0,0.08) !important;
     padding: 4px 6px !important;
-    transition: border-color 0.2s, box-shadow 0.2s !important;
 }
 [data-testid="stChatInput"]:focus-within {
     border-color: #3B82F6 !important;
@@ -274,95 +288,74 @@ html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     color: #1A202C !important;
     padding: 12px 16px !important;
     line-height: 1.6 !important;
+    background: transparent !important;
 }
 [data-testid="stChatInput"] textarea::placeholder {
     color: #A0AEC0 !important;
 }
 
-/* ── SEND BUTTON — BRIGHT BLUE WITH WHITE ARROW ── */
-/* ── Send button — blue background, white arrow ── */
+/* Send button — BLUE with WHITE arrow */
 [data-testid="stChatInput"] button,
 [data-testid="stChatInput"] button:focus,
-[data-testid="stChatInput"] button:active {
-    background: #2563EB !important;
+[data-testid="stChatInput"] button:active,
+[data-testid="stChatInput"] button[kind="primary"],
+[data-testid="stChatInput"] button[kind="secondary"] {
     background-color: #2563EB !important;
+    background: #2563EB !important;
     border-radius: 50% !important;
     border: none !important;
     outline: none !important;
-    box-shadow: 0 4px 14px rgba(37,99,235,0.40) !important;
-    transition: all 0.15s !important;
-    min-width: 38px !important;
-    min-height: 38px !important;
-    width: 38px !important;
-    height: 38px !important;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.4) !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    width: 40px !important;
+    height: 40px !important;
     padding: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    transition: all 0.15s !important;
+    color: #FFFFFF !important;
 }
 [data-testid="stChatInput"] button:hover {
-    background: #1D4ED8 !important;
     background-color: #1D4ED8 !important;
+    background: #1D4ED8 !important;
     transform: scale(1.08) !important;
-    box-shadow: 0 6px 20px rgba(37,99,235,0.50) !important;
+    box-shadow: 0 6px 18px rgba(37,99,235,0.5) !important;
 }
-/* Force ALL svg children white */
-[data-testid="stChatInput"] button svg {
-    fill: #FFFFFF !important;
-    color: #FFFFFF !important;
-    width: 18px !important;
-    height: 18px !important;
-    filter: brightness(0) invert(1) !important;
-}
+/* White arrow — filter is the nuclear option */
+[data-testid="stChatInput"] button svg,
 [data-testid="stChatInput"] button svg *,
 [data-testid="stChatInput"] button svg path,
 [data-testid="stChatInput"] button svg circle,
-[data-testid="stChatInput"] button svg rect,
-[data-testid="stChatInput"] button svg polyline,
-[data-testid="stChatInput"] button svg line {
+[data-testid="stChatInput"] button svg rect {
     fill: #FFFFFF !important;
     stroke: #FFFFFF !important;
     color: #FFFFFF !important;
+    filter: brightness(0) invert(1) !important;
 }
 
 /* ── SPINNER ── */
 [data-testid="stSpinner"] p {
     font-size: 0.85rem !important;
     color: #718096 !important;
-    font-weight: 400 !important;
-}
-
-/* ── FORCE SIDEBAR VISIBLE ── */
-[data-testid="collapsedControl"] {
-    display: none !important;
-    visibility: hidden !important;
-}
-[data-testid="stSidebar"][aria-expanded="false"] {
-    display: flex !important;
-    width: 270px !important;
-    min-width: 270px !important;
-    transform: none !important;
 }
 
 /* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #CBD5E0; border-radius: 8px; }
-::-webkit-scrollbar-thumb:hover { background: #A0AEC0; }
 </style>
 """, unsafe_allow_html=True)
 
 
-# ------------------------------------------------------------------ #
-#  HELPER — robust API call                                           #
-# ------------------------------------------------------------------ #
+# ── API CALL ──────────────────────────────────────────────────────────────────
 def call_chat_api(message: str) -> Tuple[str, Optional[float]]:
     try:
         resp = requests.post(API_URL, json={"message": message}, timeout=30)
         resp.raise_for_status()
         data = resp.json()
-        return data.get("response", "⚠️ The server returned an empty response."), \
-               data.get("latency")
+        return data.get("response", "⚠️ The server returned an empty response."), data.get("latency")
     except ConnectionError:
         return "⚠️ Cannot reach the server. Please check that the backend is running.", None
     except Timeout:
@@ -376,88 +369,60 @@ def call_chat_api(message: str) -> Tuple[str, Optional[float]]:
         return f"⚠️ Network error: {e}", None
 
 
-def send_sample(question: str):
-    st.session_state.messages.append({"role": "user", "content": question})
+def send_sample(q: str):
+    st.session_state.messages.append({"role": "user", "content": q})
     st.rerun()
 
 
-# ================================================================== #
-#  SIDEBAR                                                            #
-# ================================================================== #
+# ── SIDEBAR ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## 🛍️ AssistIQ")
     st.caption("Customer Support Platform")
     st.markdown("---")
 
     st.markdown("**🛍️ PRODUCT RECOMMENDATIONS**")
-    if st.button("💬 Recommend a Bluetooth speaker"):
-        send_sample("Recommend a good Bluetooth speaker")
-    if st.button("💬 Best laptop under ₹50,000"):
-        send_sample("Best budget laptop under ₹50,000")
-    if st.button("💬 Noise-cancelling headphones"):
-        send_sample("Suggest noise-cancelling headphones")
-    if st.button("💬 Best mobile under ₹30,000"):
-        send_sample("Best mobile phone under ₹30,000")
+    if st.button("💬 Recommend a Bluetooth speaker"):    send_sample("Recommend a good Bluetooth speaker")
+    if st.button("💬 Best laptop under ₹50,000"):        send_sample("Best budget laptop under ₹50,000")
+    if st.button("💬 Noise-cancelling headphones"):      send_sample("Suggest noise-cancelling headphones")
+    if st.button("💬 Best mobile under ₹30,000"):        send_sample("Best mobile phone under ₹30,000")
 
     st.markdown("---")
-
     st.markdown("**📦 ORDER TRACKING**")
-    if st.button("💬 Where is my order ORD001?"):
-        send_sample("Where is my order ORD001?")
-    if st.button("💬 Track my order ORD002"):
-        send_sample("Track my order ORD002")
-    if st.button("💬 Status of order ORD003?"):
-        send_sample("What is the status of ORD003?")
-    if st.button("💬 Has ORD004 been delivered?"):
-        send_sample("Has my order ORD004 been delivered?")
+    if st.button("💬 Where is my order ORD001?"):        send_sample("Where is my order ORD001?")
+    if st.button("💬 Track my order ORD002"):            send_sample("Track my order ORD002")
+    if st.button("💬 Status of order ORD003?"):          send_sample("What is the status of ORD003?")
+    if st.button("💬 Has ORD004 been delivered?"):       send_sample("Has my order ORD004 been delivered?")
 
     st.markdown("---")
-
     st.markdown("**📜 POLICIES & RETURNS**")
-    if st.button("💬 What is the return policy?"):
-        send_sample("What is your return policy?")
-    if st.button("💬 How do I get a refund?"):
-        send_sample("How do I get a refund?")
-    if st.button("💬 What is the warranty policy?"):
-        send_sample("What is the warranty policy?")
-    if st.button("💬 How long does shipping take?"):
-        send_sample("How long does shipping take?")
+    if st.button("💬 What is the return policy?"):       send_sample("What is your return policy?")
+    if st.button("💬 How do I get a refund?"):           send_sample("How do I get a refund?")
+    if st.button("💬 What is the warranty policy?"):     send_sample("What is the warranty policy?")
+    if st.button("💬 How long does shipping take?"):     send_sample("How long does shipping take?")
 
     st.markdown("---")
-
     st.markdown("**⚠️ COMPLAINTS**")
-    if st.button("💬 My product arrived damaged"):
-        send_sample("My product arrived damaged")
-    if st.button("💬 I received the wrong item"):
-        send_sample("I received the wrong item")
-    if st.button("💬 My order has not arrived"):
-        send_sample("My order has not arrived yet")
-    if st.button("💬 I want to raise a complaint"):
-        send_sample("I want to raise a complaint")
+    if st.button("💬 My product arrived damaged"):       send_sample("My product arrived damaged")
+    if st.button("💬 I received the wrong item"):        send_sample("I received the wrong item")
+    if st.button("💬 My order has not arrived"):         send_sample("My order has not arrived yet")
+    if st.button("💬 I want to raise a complaint"):      send_sample("I want to raise a complaint")
 
     st.markdown("---")
-
     if st.button("🧹 Clear Chat"):
         st.session_state.messages = []
         st.rerun()
 
 
-# ================================================================== #
-#  HEADER                                                             #
-# ================================================================== #
+# ── HEADER ────────────────────────────────────────────────────────────────────
 st.markdown("# 🛍️ *AssistIQ* — Customer Assistant")
 st.caption("SMART MULTI-AGENT AI · REAL-TIME SUPPORT")
 st.markdown("---")
 
-# ================================================================== #
-#  CHAT STATE                                                         #
-# ================================================================== #
+# ── CHAT STATE ────────────────────────────────────────────────────────────────
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# ================================================================== #
-#  WELCOME CARD                                                       #
-# ================================================================== #
+# ── WELCOME CARD ──────────────────────────────────────────────────────────────
 if not st.session_state.messages:
     st.markdown("""
 <div style="display:flex;flex-direction:column;align-items:center;
@@ -497,40 +462,31 @@ if not st.session_state.messages:
 </div>
 """, unsafe_allow_html=True)
 
-# ================================================================== #
-#  REPLAY HISTORY                                                     #
-# ================================================================== #
+# ── REPLAY HISTORY ────────────────────────────────────────────────────────────
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# ================================================================== #
-#  HANDLE NEW INPUT                                                   #
-# ================================================================== #
+# ── HANDLE INPUT ──────────────────────────────────────────────────────────────
 user_input = st.chat_input("Ask me anything about your order, products or policies…")
 
 if user_input:
     st.session_state.messages.append({"role": "user", "content": user_input})
     with st.chat_message("user"):
         st.markdown(user_input)
-
     with st.chat_message("assistant"):
         with st.spinner("Thinking…"):
             bot_reply, latency = call_chat_api(user_input)
         st.markdown(bot_reply)
         if latency is not None:
             st.caption(f"⏱ {latency:.2f}s")
-
     st.session_state.messages.append({"role": "assistant", "content": bot_reply})
 
-# ================================================================== #
-#  FOOTER                                                             #
-# ================================================================== #
+# ── FOOTER ────────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown(
     "<p style='text-align:center;font-size:0.72rem;color:#A0AEC0;"
     "letter-spacing:0.08em;font-weight:600;text-transform:uppercase;'>"
-    "© 2026 AssistIQ &nbsp;·&nbsp; AI Customer Support Platform"
-    "</p>",
+    "© 2026 AssistIQ &nbsp;·&nbsp; AI Customer Support Platform</p>",
     unsafe_allow_html=True,
 )
