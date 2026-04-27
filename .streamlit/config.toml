@@ -1,5 +1,10 @@
-[ui]
-hideSidebarNav = false
-
 [theme]
 base = "light"
+primaryColor = "#2563EB"
+backgroundColor = "#F4F6FB"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#1A202C"
+font = "sans serif"
+
+[ui]
+hideSidebarNav = false
