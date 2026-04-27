@@ -11,8 +11,6 @@
 
 **A production-ready multi-agent AI system for automating e-commerce customer support.**
 
-[Live Demo](//https://customer-support-agent-assist.streamlit.app/) · [Backend API](https://customer-support-agent-wppl.onrender.com/docs) · [Report a Bug](https://github.com/raju-AI-portfolio/customer-support-agent/issues)
-
 </div>
 
 ---
