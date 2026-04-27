@@ -41,34 +41,9 @@ The system integrates a **Streamlit frontend**, a **FastAPI backend**, and an **
 
 ## 🏗️ Architecture
 
-```
-User (Streamlit UI)
-        │
-        ▼ POST /chat
-FastAPI Backend
-        │
-        ▼
-Orchestrator
-  ├── Safety Classifier (GPT) ──── unsafe ──► Blocked
-  ├── Relevance Classifier (GPT) ─ off-scope ► Redirect
-  ├── Intent Classifier
-  │       │
-  │   ┌───┴───────────────────────────┐
-  │   ▼           ▼         ▼         ▼
-  │ Product    Order      Policy   Complaint
-  │  Agent     Agent      Agent     Agent
-  │   │           │         │         │
-  │ products   orders   policies  complaints
-  │  .json      .json     .json     .json
-  │   └───────────┴─────────┴─────────┘
-  │                   │
-  │                   ▼
-  │           GPT-4.1-mini (LLM)
-  │                   │
-  └── Output Sanitiser ──────────────────────►  JSON Response
-                                                      │
-                                               Streamlit UI
-```
+
+ <img width="1264" height="842" alt="Customer Support Multiagent " src="https://github.com/user-attachments/assets/4b585205-1e3a-4ef6-bca5-41678e8145b1" />
+
 
 ---
 
