@@ -44,6 +44,8 @@ The system integrates a **Streamlit frontend**, a **FastAPI backend**, and an **
 
  <img width="1264" height="842" alt="Customer Support Multiagent " src="https://github.com/user-attachments/assets/4b585205-1e3a-4ef6-bca5-41678e8145b1" />
 
+---
+<img width="1472" height="3010" alt="image" src="https://github.com/user-attachments/assets/e839c0ad-6f96-4b90-a201-45b4fb0af0e2" />
 
 ---
 
