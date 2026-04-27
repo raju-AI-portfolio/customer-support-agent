@@ -2,18 +2,33 @@
   "policies": [
     {
       "policy_id": "POL001",
-      "type": "refund",
-      "description": "Items can be returned within 30 days of purchase for a full refund."
+      "topic": "return",
+      "description": "Items can be returned within 30 days of purchase in original condition for a full refund."
     },
     {
       "policy_id": "POL002",
-      "type": "shipping",
-      "description": "Standard shipping takes 5-7 business days. Express shipping takes 1-2 business days."
+      "topic": "refund",
+      "description": "Refunds are processed within 5-7 business days back to the original payment method."
     },
     {
       "policy_id": "POL003",
-      "type": "warranty",
-      "description": "All electronics come with a 1-year manufacturer warranty."
+      "topic": "shipping",
+      "description": "Standard shipping takes 5-7 business days. Express shipping takes 1-2 business days."
+    },
+    {
+      "policy_id": "POL004",
+      "topic": "warranty",
+      "description": "All electronics come with a 1-year manufacturer warranty against defects."
+    },
+    {
+      "policy_id": "POL005",
+      "topic": "exchange",
+      "description": "Exchanges are accepted within 15 days of purchase with original receipt."
+    },
+    {
+      "policy_id": "POL006",
+      "topic": "cancellation",
+      "description": "Orders can be cancelled within 24 hours of placement for a full refund."
     }
   ]
 }
