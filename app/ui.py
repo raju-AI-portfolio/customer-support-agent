@@ -23,11 +23,32 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     background: #F4F6FB !important;
 }
 
-/* ── HIDE CHROME ── */
+/* ── HIDE CHROME (keep sidebar toggle) ── */
 #MainMenu, [data-testid="stToolbar"], [data-testid="stDecoration"],
-[data-testid="stStatusWidget"], footer, [data-testid="collapsedControl"] {
+[data-testid="stStatusWidget"], footer {
     visibility: hidden !important;
     display: none !important;
+}
+
+/* ── SIDEBAR TOGGLE — big blue button ── */
+[data-testid="collapsedControl"] {
+    visibility: visible !important;
+    display: flex !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: #2563EB !important;
+    border-radius: 50% !important;
+    top: 50% !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.4) !important;
+    cursor: pointer !important;
+    z-index: 999 !important;
+}
+[data-testid="collapsedControl"] svg {
+    width: 20px !important;
+    height: 20px !important;
+    filter: brightness(0) invert(1) !important;
 }
 
 /* ── MAIN CONTENT ── */
