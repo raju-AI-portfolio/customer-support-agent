@@ -110,17 +110,17 @@ html, body, [class*="css"] {
     border: 1px solid rgba(255,255,255,0.2) !important;
     color: #FFFFFF !important;
     border-radius: 8px !important;
-    font-size: 0.82rem !important;
+    font-size: 0.92rem !important;
     font-weight: 500 !important;
     font-family: 'Inter', sans-serif !important;
     width: 100% !important;
     text-align: left !important;
-    padding: 8px 12px !important;
-    margin-bottom: 4px !important;
+    padding: 10px 14px !important;
+    margin-bottom: 5px !important;
     transition: all 0.15s !important;
     white-space: normal !important;
     height: auto !important;
-    line-height: 1.4 !important;
+    line-height: 1.5 !important;
 }
 /* Force WHITE on every inner element Streamlit creates */
 [data-testid="stSidebar"] .stButton > button *,
@@ -130,7 +130,7 @@ html, body, [class*="css"] {
 [data-testid="stSidebar"] .stButton > button small,
 [data-testid="stSidebar"] .stButton > button label {
     color: #FFFFFF !important;
-    font-size: 0.82rem !important;
+    font-size: 0.92rem !important;
     font-weight: 500 !important;
     background: transparent !important;
 }
@@ -354,18 +354,37 @@ if "messages" not in st.session_state:
 if not st.session_state.messages:
     st.markdown("""
 <div style="text-align:center;padding:3rem 1rem 2rem;">
-    <div style="font-size:3rem;margin-bottom:16px;">🛍️</div>
-    <div style="font-size:1.6rem;font-weight:700;color:#0F1E2E;
-                margin-bottom:10px;font-family:'Inter',sans-serif;">
+    <div style="width:80px;height:80px;border-radius:22px;
+                background:linear-gradient(135deg,#1E3A5F,#2563EB);
+                display:flex;align-items:center;justify-content:center;
+                font-size:2.2rem;margin:0 auto 20px;
+                box-shadow:0 8px 24px rgba(37,99,235,0.25);">🛍️</div>
+    <div style="font-size:1.8rem;font-weight:700;color:#0F1E2E;
+                margin-bottom:12px;font-family:'Inter',sans-serif;
+                letter-spacing:-0.02em;">
         How can I help you today?
     </div>
-    <div style="font-size:0.9rem;color:#64748B;max-width:400px;
+    <div style="font-size:0.92rem;color:#64748B;max-width:420px;
                 margin:0 auto 12px;line-height:1.75;">
         Order tracking, product recommendations, store policies,
         and complaint resolution.
     </div>
-    <div style="font-size:0.78rem;color:#94A3B8;">
+    <div style="font-size:0.8rem;color:#94A3B8;margin-bottom:28px;">
         ← Pick a question from the sidebar or type below
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <div style="background:#EBF4FF;border:1.5px solid #93C5FD;border-radius:50px;
+                    padding:10px 20px;font-size:0.88rem;color:#1D4ED8;font-weight:600;">
+            🛍️ Products</div>
+        <div style="background:#F0FFF4;border:1.5px solid #6EE7B7;border-radius:50px;
+                    padding:10px 20px;font-size:0.88rem;color:#065F46;font-weight:600;">
+            📦 Orders</div>
+        <div style="background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:50px;
+                    padding:10px 20px;font-size:0.88rem;color:#92400E;font-weight:600;">
+            📜 Policies</div>
+        <div style="background:#FFF1F2;border:1.5px solid #FDA4AF;border-radius:50px;
+                    padding:10px 20px;font-size:0.88rem;color:#9F1239;font-weight:600;">
+            ⚠️ Complaints</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
