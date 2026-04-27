@@ -1,3 +1,44 @@
 {
-  "orders": []
+  "orders": [
+    {
+      "order_id": "ORD001",
+      "customer_name": "Raju Kumar",
+      "item": "iPhone 15",
+      "status": "Shipped",
+      "delivery_date": "2026-04-30",
+      "tracking_number": "TRK123456789"
+    },
+    {
+      "order_id": "ORD002",
+      "customer_name": "Raju Kumar",
+      "item": "Sony WH-1000XM5 Headphones",
+      "status": "Out for Delivery",
+      "delivery_date": "2026-04-27",
+      "tracking_number": "TRK987654321"
+    },
+    {
+      "order_id": "ORD003",
+      "customer_name": "Raju Kumar",
+      "item": "Samsung Galaxy S23 FE",
+      "status": "Processing",
+      "delivery_date": "2026-05-02",
+      "tracking_number": "TRK456789123"
+    },
+    {
+      "order_id": "ORD004",
+      "customer_name": "Raju Kumar",
+      "item": "JBL Charge 5 Bluetooth Speaker",
+      "status": "Delivered",
+      "delivery_date": "2026-04-20",
+      "tracking_number": "TRK321654987"
+    },
+    {
+      "order_id": "ORD005",
+      "customer_name": "Raju Kumar",
+      "item": "Apple MacBook Air M2",
+      "status": "Cancelled",
+      "delivery_date": "N/A",
+      "tracking_number": "N/A"
+    }
+  ]
 }
