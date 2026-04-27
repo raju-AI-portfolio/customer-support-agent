@@ -33,16 +33,24 @@ ALLOWED_TOPICS = [
     # Products
     "product", "recommend", "suggestion", "buy", "purchase",
     "price", "cost", "mobile", "laptop", "phone", "electronics",
-    "appliance", "item", "best", "compare", "review",
+    "appliance", "item", "best", "compare", "review", "speaker",
+    "headphone", "tablet", "camera", "television", "smartwatch",
+    "earbuds", "charger", "router", "printer", "keyboard", "mouse",
+    "bluetooth", "wireless", "gaming", "console",
     # Returns & Refunds
     "return", "refund", "money back", "exchange", "replace",
     "replacement", "cancel", "cancellation",
     # Complaints
     "complaint", "broken", "damaged", "defective", "issue",
-    "problem", "fault", "not working", "wrong item",
+    "problem", "fault", "not working", "wrong item", "wrong",
+    "missing", "late", "delay", "lost", "arrived",
     # Policies
     "policy", "policies", "warranty", "guarantee", "shipping",
     "terms", "condition", "rule",
+    # Question words — allow any support question phrasing
+    "what is", "what are", "how long", "how do", "how can",
+    "when will", "where is", "can i", "do you", "tell me",
+    "explain", "details", "information", "info",
     # General support
     "help", "support", "assist", "contact", "agent", "service",
 ]
