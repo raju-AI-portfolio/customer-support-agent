@@ -7,8 +7,9 @@ from requests.exceptions import ConnectionError, Timeout, RequestException
 # ------------------------------------------------------------------ #
 #  FIX 3 — API URL from environment variable, fallback for local dev  #
 # ------------------------------------------------------------------ #
-API_URL = os.getenv("ASSISTIQ_API_URL", "http://127.0.0.1:8000/chat")
 
+# NEW
+API_URL = os.getenv("ASSISTIQ_API_URL", "https://customer-support-agent-wppl.onrender.com/chat")
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="AssistIQ",
