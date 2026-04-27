@@ -13,51 +13,112 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# JS: force sidebar open + fix send button color via DOM injection
+st.markdown("""
+<script>
+(function() {
+    function fixAll() {
+        try {
+            var doc = window.parent.document;
+
+            // 1. Force sidebar open
+            var sidebar = doc.querySelector('[data-testid="stSidebar"]');
+            if (sidebar && sidebar.getAttribute('aria-expanded') === 'false') {
+                var btn = doc.querySelector('[data-testid="collapsedControl"] button');
+                if (btn) btn.click();
+            }
+
+            // 2. Fix send button — inject style directly into parent document
+            var styleId = 'assistiq-send-fix';
+            if (!doc.getElementById(styleId)) {
+                var style = doc.createElement('style');
+                style.id = styleId;
+                style.textContent = `
+                    [data-testid="stChatInput"] button {
+                        background: #2563EB !important;
+                        background-color: #2563EB !important;
+                        border-radius: 50% !important;
+                        border: none !important;
+                        width: 40px !important;
+                        height: 40px !important;
+                        min-width: 40px !important;
+                        min-height: 40px !important;
+                        box-shadow: 0 4px 14px rgba(37,99,235,0.45) !important;
+                    }
+                    [data-testid="stChatInput"] button svg {
+                        filter: brightness(0) invert(1) !important;
+                        width: 18px !important;
+                        height: 18px !important;
+                    }
+                    [data-testid="stChatInput"] button:hover {
+                        background: #1D4ED8 !important;
+                        background-color: #1D4ED8 !important;
+                        transform: scale(1.08) !important;
+                    }
+                `;
+                doc.head.appendChild(style);
+            }
+        } catch(e) {}
+    }
+    setTimeout(fixAll, 100);
+    setTimeout(fixAll, 500);
+    setTimeout(fixAll, 1000);
+    setTimeout(fixAll, 2000);
+    setTimeout(fixAll, 4000);
+})();
+</script>
+""", unsafe_allow_html=True)
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,500&display=swap');
 
-/* ── GLOBAL ── */
 html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="stMain"] {
     font-family: 'Inter', sans-serif !important;
     background: #F4F6FB !important;
 }
 
-/* ── HIDE CHROME (keep sidebar toggle) ── */
 #MainMenu, [data-testid="stToolbar"], [data-testid="stDecoration"],
 [data-testid="stStatusWidget"], footer {
     visibility: hidden !important;
     display: none !important;
 }
 
-/* ── SIDEBAR TOGGLE — big blue button ── */
+/* Make sidebar toggle arrow BIG and BLUE */
 [data-testid="collapsedControl"] {
     visibility: visible !important;
     display: flex !important;
-    width: 36px !important;
-    height: 36px !important;
     background: #2563EB !important;
-    border-radius: 50% !important;
-    top: 50% !important;
+    border-radius: 0 8px 8px 0 !important;
+    width: 28px !important;
+    height: 60px !important;
     align-items: center !important;
     justify-content: center !important;
-    box-shadow: 0 4px 12px rgba(37,99,235,0.4) !important;
+    box-shadow: 2px 0 12px rgba(37,99,235,0.4) !important;
+    top: calc(50vh - 30px) !important;
+    position: fixed !important;
+    left: 0 !important;
+    z-index: 9999 !important;
     cursor: pointer !important;
-    z-index: 999 !important;
+}
+[data-testid="collapsedControl"] button {
+    background: transparent !important;
+    border: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
 }
 [data-testid="collapsedControl"] svg {
-    width: 20px !important;
-    height: 20px !important;
+    width: 18px !important;
+    height: 18px !important;
     filter: brightness(0) invert(1) !important;
 }
 
-/* ── MAIN CONTENT ── */
 [data-testid="stMain"] .block-container {
     padding: 2rem 2.5rem 6rem !important;
     max-width: 980px !important;
 }
 
-/* ── PAGE TITLE ── */
 [data-testid="stMain"] h1 {
     font-family: 'Playfair Display', serif !important;
     font-size: 2.2rem !important;
@@ -81,42 +142,33 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     font-style: normal !important;
 }
 
-/* ═══════════════════════════════════════
-   SIDEBAR
-═══════════════════════════════════════ */
+/* SIDEBAR */
 [data-testid="stSidebar"] {
     background-color: #1E2A3A !important;
     border-right: 2px solid #2D3F55 !important;
     min-width: 260px !important;
     max-width: 270px !important;
 }
-
 [data-testid="stSidebar"] > div:first-child {
     background-color: #1E2A3A !important;
     padding-top: 1.4rem !important;
 }
-
-/* Sidebar ALL text nodes */
 [data-testid="stSidebar"] p,
 [data-testid="stSidebar"] span,
 [data-testid="stSidebar"] div,
 [data-testid="stSidebar"] li,
-[data-testid="stSidebar"] label,
-[data-testid="stSidebar"] small {
+[data-testid="stSidebar"] label {
     color: #C8D8E8 !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 13px !important;
     font-weight: 400 !important;
     line-height: 1.6 !important;
 }
-
 [data-testid="stSidebar"] strong,
 [data-testid="stSidebar"] b {
     color: #FFFFFF !important;
     font-weight: 700 !important;
 }
-
-/* Sidebar headings */
 [data-testid="stSidebar"] h1,
 [data-testid="stSidebar"] h2,
 [data-testid="stSidebar"] h3 {
@@ -130,18 +182,16 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     padding: 0 !important;
     background: transparent !important;
 }
-
 [data-testid="stSidebar"] h2:first-of-type {
     font-family: 'Playfair Display', serif !important;
     font-size: 20px !important;
     font-style: italic !important;
     text-transform: none !important;
-    letter-spacing: -0.01em !important;
-    font-weight: 600 !important;
     color: #FFFFFF !important;
+    font-weight: 600 !important;
     margin-bottom: 2px !important;
+    letter-spacing: -0.01em !important;
 }
-
 [data-testid="stSidebar"] [data-testid="stCaptionContainer"] p,
 [data-testid="stSidebar"] [data-testid="stCaptionContainer"] * {
     color: #5A7A9A !important;
@@ -151,20 +201,15 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     font-weight: 600 !important;
     font-style: normal !important;
 }
-
 [data-testid="stSidebar"] hr {
     border: none !important;
     border-top: 1px solid rgba(255,255,255,0.1) !important;
     margin: 12px 0 !important;
 }
 
-/* ═══════════════════════════════════════
-   SIDEBAR BUTTONS — override Streamlit red
-═══════════════════════════════════════ */
+/* SIDEBAR BUTTONS */
 [data-testid="stSidebar"] .stButton > button,
-[data-testid="stSidebar"] [data-testid="stButton"] > button,
-[data-testid="stSidebar"] button[kind="secondary"],
-[data-testid="stSidebar"] button {
+[data-testid="stSidebar"] [data-testid="stButton"] > button {
     width: 100% !important;
     background-color: rgba(255,255,255,0.07) !important;
     background: rgba(255,255,255,0.07) !important;
@@ -184,22 +229,16 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     min-height: unset !important;
     box-shadow: none !important;
 }
-
-/* Every child of sidebar button */
 [data-testid="stSidebar"] .stButton > button *,
-[data-testid="stSidebar"] [data-testid="stButton"] > button *,
-[data-testid="stSidebar"] button[kind="secondary"] *,
-[data-testid="stSidebar"] button * {
+[data-testid="stSidebar"] [data-testid="stButton"] > button * {
     color: #C8D8E8 !important;
     font-size: 12.5px !important;
     font-weight: 500 !important;
     font-family: 'Inter', sans-serif !important;
     background: transparent !important;
 }
-
 [data-testid="stSidebar"] .stButton > button:hover,
-[data-testid="stSidebar"] [data-testid="stButton"] > button:hover,
-[data-testid="stSidebar"] button:hover {
+[data-testid="stSidebar"] [data-testid="stButton"] > button:hover {
     background-color: rgba(37,99,235,0.25) !important;
     background: rgba(37,99,235,0.25) !important;
     border-color: rgba(37,99,235,0.5) !important;
@@ -207,15 +246,11 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     transform: translateX(3px) !important;
     box-shadow: none !important;
 }
-
 [data-testid="stSidebar"] .stButton > button:hover *,
-[data-testid="stSidebar"] [data-testid="stButton"] > button:hover *,
-[data-testid="stSidebar"] button:hover * {
+[data-testid="stSidebar"] [data-testid="stButton"] > button:hover * {
     color: #FFFFFF !important;
     background: transparent !important;
 }
-
-/* Clear Chat button — last button red tint */
 [data-testid="stSidebar"] .stButton:last-child > button,
 [data-testid="stSidebar"] [data-testid="stButton"]:last-of-type > button {
     background-color: rgba(239,68,68,0.12) !important;
@@ -224,39 +259,31 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     color: #FC8181 !important;
     font-weight: 600 !important;
 }
-
 [data-testid="stSidebar"] .stButton:last-child > button *,
 [data-testid="stSidebar"] [data-testid="stButton"]:last-of-type > button * {
     color: #FC8181 !important;
     background: transparent !important;
 }
-
 [data-testid="stSidebar"] .stButton:last-child > button:hover,
 [data-testid="stSidebar"] [data-testid="stButton"]:last-of-type > button:hover {
     background-color: rgba(239,68,68,0.25) !important;
-    background: rgba(239,68,68,0.25) !important;
     color: #FFFFFF !important;
 }
 
-/* ═══════════════════════════════════════
-   CHAT MESSAGES
-═══════════════════════════════════════ */
+/* CHAT MESSAGES */
 [data-testid="stChatMessage"] {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     padding: 4px 0 !important;
 }
-
 [data-testid="stChatMessage"] p {
     font-family: 'Inter', sans-serif !important;
     font-size: 0.94rem !important;
     line-height: 1.78 !important;
     margin: 0 !important;
 }
-
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"])
-    [data-testid="stMarkdownContainer"] {
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) [data-testid="stMarkdownContainer"] {
     background: #2563EB !important;
     border-radius: 18px 18px 4px 18px !important;
     padding: 12px 18px !important;
@@ -264,11 +291,10 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     max-width: 78% !important;
     margin-left: auto !important;
 }
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"])
-    [data-testid="stMarkdownContainer"] p { color: #FFFFFF !important; }
-
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
-    [data-testid="stMarkdownContainer"] {
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) [data-testid="stMarkdownContainer"] p {
+    color: #FFFFFF !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [data-testid="stMarkdownContainer"] {
     background: #FFFFFF !important;
     border: 1px solid #E2E8F0 !important;
     border-radius: 4px 18px 18px 18px !important;
@@ -276,11 +302,10 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
     max-width: 78% !important;
 }
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
-    [data-testid="stMarkdownContainer"] p { color: #1A202C !important; }
-
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
-    [data-testid="stCaptionContainer"] p {
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [data-testid="stMarkdownContainer"] p {
+    color: #1A202C !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) [data-testid="stCaptionContainer"] p {
     font-size: 0.72rem !important;
     color: #A0AEC0 !important;
     font-weight: 500 !important;
@@ -289,9 +314,7 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     font-style: normal !important;
 }
 
-/* ═══════════════════════════════════════
-   CHAT INPUT + SEND BUTTON
-═══════════════════════════════════════ */
+/* CHAT INPUT */
 [data-testid="stChatInput"] {
     border-radius: 50px !important;
     border: 1.5px solid #CBD5E0 !important;
@@ -315,12 +338,8 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     color: #A0AEC0 !important;
 }
 
-/* Send button — BLUE with WHITE arrow */
-[data-testid="stChatInput"] button,
-[data-testid="stChatInput"] button:focus,
-[data-testid="stChatInput"] button:active,
-[data-testid="stChatInput"] button[kind="primary"],
-[data-testid="stChatInput"] button[kind="secondary"] {
+/* SEND BUTTON - blue with white arrow */
+[data-testid="stChatInput"] button {
     background-color: #2563EB !important;
     background: #2563EB !important;
     border-radius: 50% !important;
@@ -332,37 +351,22 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
     width: 40px !important;
     height: 40px !important;
     padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    transition: all 0.15s !important;
     color: #FFFFFF !important;
 }
 [data-testid="stChatInput"] button:hover {
     background-color: #1D4ED8 !important;
     background: #1D4ED8 !important;
     transform: scale(1.08) !important;
-    box-shadow: 0 6px 18px rgba(37,99,235,0.5) !important;
 }
-/* White arrow — filter is the nuclear option */
 [data-testid="stChatInput"] button svg,
 [data-testid="stChatInput"] button svg *,
-[data-testid="stChatInput"] button svg path,
-[data-testid="stChatInput"] button svg circle,
-[data-testid="stChatInput"] button svg rect {
+[data-testid="stChatInput"] button svg path {
     fill: #FFFFFF !important;
-    stroke: #FFFFFF !important;
     color: #FFFFFF !important;
     filter: brightness(0) invert(1) !important;
 }
 
-/* ── SPINNER ── */
-[data-testid="stSpinner"] p {
-    font-size: 0.85rem !important;
-    color: #718096 !important;
-}
-
-/* ── SCROLLBAR ── */
+/* SCROLLBAR */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #CBD5E0; border-radius: 8px; }
@@ -370,7 +374,6 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="st
 """, unsafe_allow_html=True)
 
 
-# ── API CALL ──────────────────────────────────────────────────────────────────
 def call_chat_api(message: str) -> Tuple[str, Optional[float]]:
     try:
         resp = requests.post(API_URL, json={"message": message}, timeout=30)
@@ -395,7 +398,7 @@ def send_sample(q: str):
     st.rerun()
 
 
-# ── SIDEBAR ───────────────────────────────────────────────────────────────────
+# SIDEBAR
 with st.sidebar:
     st.markdown("## 🛍️ AssistIQ")
     st.caption("Customer Support Platform")
@@ -434,16 +437,14 @@ with st.sidebar:
         st.rerun()
 
 
-# ── HEADER ────────────────────────────────────────────────────────────────────
+# HEADER
 st.markdown("# 🛍️ *AssistIQ* — Customer Assistant")
 st.caption("SMART MULTI-AGENT AI · REAL-TIME SUPPORT")
 st.markdown("---")
 
-# ── CHAT STATE ────────────────────────────────────────────────────────────────
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# ── WELCOME CARD ──────────────────────────────────────────────────────────────
 if not st.session_state.messages:
     st.markdown("""
 <div style="display:flex;flex-direction:column;align-items:center;
@@ -483,12 +484,10 @@ if not st.session_state.messages:
 </div>
 """, unsafe_allow_html=True)
 
-# ── REPLAY HISTORY ────────────────────────────────────────────────────────────
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# ── HANDLE INPUT ──────────────────────────────────────────────────────────────
 user_input = st.chat_input("Ask me anything about your order, products or policies…")
 
 if user_input:
@@ -503,7 +502,6 @@ if user_input:
             st.caption(f"⏱ {latency:.2f}s")
     st.session_state.messages.append({"role": "assistant", "content": bot_reply})
 
-# ── FOOTER ────────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown(
     "<p style='text-align:center;font-size:0.72rem;color:#A0AEC0;"
