@@ -21,6 +21,9 @@ AssistIQ is a **multi-agent AI customer support chatbot** built for e-commerce p
 
 The system integrates a **Streamlit frontend**, a **FastAPI backend**, and an **OpenAI GPT-4.1-mini** inference layer, with a three-stage guardrail pipeline (safety → relevance → output sanitisation) to ensure safe, accurate, and on-topic responses.
 
+
+Deployed Live Demo: https://customer-support-agent-assist.streamlit.app/
+
 ---
 
 ## ✨ Features
