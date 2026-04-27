@@ -124,7 +124,7 @@ User query:
 {query}
 
 Policy:
-{policy.get('text')}
+{policy.get('description')}
 
 Format:
 
