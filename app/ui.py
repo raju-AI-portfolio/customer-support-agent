@@ -4,9 +4,9 @@ import streamlit as st
 import requests
 from requests.exceptions import ConnectionError, Timeout, RequestException
 
-# ================= CONFIG =================
 API_URL = os.getenv("ASSISTIQ_API_URL", "https://customer-support-agent-wppl.onrender.com/chat")
 
+# ✅ FORCE SIDEBAR ALWAYS OPEN
 st.set_page_config(
     page_title="AssistIQ",
     page_icon="🛍️",
@@ -14,69 +14,256 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ================= STYLE =================
+# ✅ SESSION FIX: ensure sidebar never stays collapsed
+if "sidebar_state" not in st.session_state:
+    st.session_state.sidebar_state = "expanded"
+
+# 🔥 HARD FIX: auto-expand sidebar if collapsed
+st.markdown("""
+<script>
+(function() {
+    function forceSidebar() {
+        try {
+            const doc = window.parent.document;
+            const sidebar = doc.querySelector('[data-testid="stSidebar"]');
+            const btn = doc.querySelector('[data-testid="collapsedControl"] button');
+            if (sidebar && sidebar.getAttribute('aria-expanded') === 'false') {
+                if (btn) btn.click();
+            }
+        } catch(e) {}
+    }
+    setTimeout(forceSidebar, 200);
+    setTimeout(forceSidebar, 800);
+    setTimeout(forceSidebar, 1500);
+})();
+</script>
+""", unsafe_allow_html=True)
+
+# ================= PROFESSIONAL STYLING =================
 st.markdown("""
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* Background */
+/* Global font */
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Page background */
 [data-testid="stAppViewContainer"] {
-    background: #F4F6FB;
+    background: #F8FAFF !important;
 }
 
-/* Sidebar */
+/* Hide Streamlit menu and footer */
+#MainMenu, footer, [data-testid="stToolbar"] {
+    visibility: hidden !important;
+}
+
+/* ── SIDEBAR ── */
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg,#1E2A3A,#1A2432);
-    color: #C8D8E8;
-    border-right: 1px solid #2D3F55;
+    background: #1C2B3A !important;
+}
+[data-testid="stSidebar"] > div:first-child {
+    background: #1C2B3A !important;
+    padding-top: 1.5rem !important;
 }
 
-/* Sidebar buttons */
-[data-testid="stSidebar"] .stButton button {
-    width: 100%;
-    background: rgba(255,255,255,0.05);
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.08);
-    color: #C8D8E8;
-    text-align: left;
-    padding: 10px;
-    margin-bottom: 6px;
+/* Sidebar title */
+[data-testid="stSidebar"] h1 {
+    color: #FFFFFF !important;
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    font-family: 'Inter', sans-serif !important;
 }
 
-[data-testid="stSidebar"] .stButton button:hover {
-    background: rgba(37,99,235,0.3);
-    color: white;
-    transform: translateX(4px);
+/* Sidebar subheaders */
+[data-testid="stSidebar"] h3 {
+    color: #7FA8C9 !important;
+    font-size: 0.7rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    font-family: 'Inter', sans-serif !important;
+    margin-top: 4px !important;
 }
 
-/* Chat bubbles */
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
-    background:#2563EB;
-    color:white;
-    margin-left:auto;
-    max-width:70%;
-    border-radius:16px 16px 4px 16px;
-    padding:10px;
+/* Sidebar caption */
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p {
+    color: #4A6A88 !important;
+    font-size: 0.72rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
 }
 
-[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) {
-    background:white;
-    border:1px solid #E2E8F0;
-    max-width:70%;
-    border-radius:4px 16px 16px 16px;
-    padding:10px;
+/* Sidebar divider */
+[data-testid="stSidebar"] hr {
+    border-color: rgba(255,255,255,0.08) !important;
+    margin: 10px 0 !important;
 }
 
-/* Input */
+/* Sidebar buttons - WHITE text - target every possible child */
+[data-testid="stSidebar"] .stButton > button,
+[data-testid="stSidebar"] .stButton > button:focus,
+[data-testid="stSidebar"] .stButton > button:active {
+    background: rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    font-family: 'Inter', sans-serif !important;
+    width: 100% !important;
+    text-align: left !important;
+    padding: 8px 12px !important;
+    margin-bottom: 4px !important;
+    transition: all 0.15s !important;
+    white-space: normal !important;
+    height: auto !important;
+    line-height: 1.4 !important;
+}
+/* Force WHITE on every inner element Streamlit creates */
+[data-testid="stSidebar"] .stButton > button *,
+[data-testid="stSidebar"] .stButton > button p,
+[data-testid="stSidebar"] .stButton > button div,
+[data-testid="stSidebar"] .stButton > button span,
+[data-testid="stSidebar"] .stButton > button small,
+[data-testid="stSidebar"] .stButton > button label {
+    color: #FFFFFF !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    background: transparent !important;
+}
+[data-testid="stSidebar"] .stButton > button:hover,
+[data-testid="stSidebar"] .stButton > button:hover * {
+    background: rgba(37,99,235,0.3) !important;
+    border-color: rgba(37,99,235,0.6) !important;
+    color: #FFFFFF !important;
+    transform: translateX(3px) !important;
+}
+
+/* Last button = Clear Chat (red) */
+[data-testid="stSidebar"] .stButton:last-child > button {
+    background: rgba(220,50,50,0.1) !important;
+    border-color: rgba(220,50,50,0.25) !important;
+    color: #F87171 !important;
+}
+[data-testid="stSidebar"] .stButton:last-child > button:hover {
+    background: rgba(220,50,50,0.25) !important;
+    color: #FFFFFF !important;
+}
+
+/* ── MAIN AREA ── */
+[data-testid="stMain"] .block-container {
+    padding: 2rem 2.5rem 5rem !important;
+    max-width: 960px !important;
+}
+
+/* Page title */
+[data-testid="stMain"] h1 {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: #0F1E2E !important;
+    font-family: 'Inter', sans-serif !important;
+    letter-spacing: -0.02em !important;
+}
+
+/* Page caption */
+[data-testid="stMain"] [data-testid="stCaptionContainer"] p {
+    color: #94A3B8 !important;
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+}
+
+/* Divider */
+[data-testid="stMain"] hr {
+    border-color: #E2E8F0 !important;
+    margin: 0.8rem 0 !important;
+}
+
+/* ── CHAT MESSAGES ── */
+[data-testid="stChatMessage"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* User bubble */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"])
+    [data-testid="stMarkdownContainer"] {
+    background: #2563EB !important;
+    border-radius: 18px 18px 4px 18px !important;
+    padding: 12px 18px !important;
+    max-width: 78% !important;
+    margin-left: auto !important;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.25) !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"])
+    [data-testid="stMarkdownContainer"] p {
+    color: #FFFFFF !important;
+    font-size: 0.93rem !important;
+}
+
+/* Assistant bubble */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
+    [data-testid="stMarkdownContainer"] {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 4px 18px 18px 18px !important;
+    padding: 12px 18px !important;
+    max-width: 78% !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
+    [data-testid="stMarkdownContainer"] p {
+    color: #1A202C !important;
+    font-size: 0.93rem !important;
+}
+
+/* ── CHAT INPUT ── */
 [data-testid="stChatInput"] {
-    border-radius:50px;
-    border:1.5px solid #CBD5E0;
-    background:white;
-    box-shadow:0 8px 25px rgba(0,0,0,0.08);
-    padding:6px;
+    border-radius: 50px !important;
+    border: 1.5px solid #CBD5E0 !important;
+    background: #FFFFFF !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07) !important;
+}
+[data-testid="stChatInput"]:focus-within {
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12) !important;
+}
+[data-testid="stChatInput"] textarea {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.93rem !important;
+    color: #1A202C !important;
+    padding: 12px 16px !important;
+}
+[data-testid="stChatInput"] textarea::placeholder {
+    color: #A0AEC0 !important;
 }
 
+/* Send button SVG arrow - white */
+[data-testid="stChatInput"] button {
+    background: #2563EB !important;
+    background-color: #2563EB !important;
+    border-radius: 50% !important;
+    border: none !important;
+}
+[data-testid="stChatInput"] button svg {
+    filter: brightness(0) invert(1) !important;
+}
+[data-testid="stChatInput"] button svg path {
+    fill: #FFFFFF !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E0; border-radius: 8px; }
 </style>
 """, unsafe_allow_html=True)
+
 
 # ================= API =================
 def call_chat_api(message: str) -> Tuple[str, Optional[float]]:
@@ -104,125 +291,100 @@ def send_sample(q: str):
 with st.sidebar:
     st.title("🛍️ AssistIQ")
     st.caption("Customer Support Platform")
-
     st.divider()
 
-    st.subheader("🛍️ Products")
+    st.subheader("🛍️ PRODUCTS")
     if st.button("💬 Recommend a Bluetooth speaker"):
         send_sample("Recommend a good Bluetooth speaker")
     if st.button("💬 Best laptop under ₹50,000"):
         send_sample("Best laptop under ₹50,000")
+    if st.button("💬 Noise-cancelling headphones"):
+        send_sample("Suggest noise-cancelling headphones")
+    if st.button("💬 Best mobile under ₹30,000"):
+        send_sample("Best mobile phone under ₹30,000")
 
     st.divider()
-
-    st.subheader("📦 Orders")
+    st.subheader("📦 ORDERS")
     if st.button("💬 Where is my order ORD001?"):
         send_sample("Where is my order ORD001?")
+    if st.button("💬 Track my order ORD002"):
+        send_sample("Track my order ORD002")
+    if st.button("💬 Status of ORD003?"):
+        send_sample("What is the status of ORD003?")
+    if st.button("💬 Has ORD004 been delivered?"):
+        send_sample("Has my order ORD004 been delivered?")
 
     st.divider()
-
-    st.subheader("📜 Policies")
+    st.subheader("📜 POLICIES")
     if st.button("💬 What is the return policy?"):
         send_sample("What is your return policy?")
+    if st.button("💬 How do I get a refund?"):
+        send_sample("How do I get a refund?")
+    if st.button("💬 Warranty policy"):
+        send_sample("What is the warranty policy?")
+    if st.button("💬 How long does shipping take?"):
+        send_sample("How long does shipping take?")
 
     st.divider()
-
-    st.subheader("⚠️ Complaints")
+    st.subheader("⚠️ COMPLAINTS")
     if st.button("💬 My product arrived damaged"):
         send_sample("My product arrived damaged")
+    if st.button("💬 I received the wrong item"):
+        send_sample("I received the wrong item")
+    if st.button("💬 My order has not arrived"):
+        send_sample("My order has not arrived yet")
+    if st.button("💬 Raise a complaint"):
+        send_sample("I want to raise a complaint")
 
     st.divider()
-
     if st.button("🧹 Clear Chat"):
         st.session_state.messages = []
         st.rerun()
 
 
-# ================= HEADER =================
-st.markdown("""
-<h2 style='text-align:center; font-family:serif; font-style:italic;'>
-🛍️ AssistIQ — Customer Assistant
-</h2>
-<p style='text-align:center; color:#718096; font-size:13px; letter-spacing:1px;'>
-SMART MULTI-AGENT AI · REAL-TIME SUPPORT
-</p>
-<hr>
-""", unsafe_allow_html=True)
+# ================= MAIN =================
+st.title("🛍️ AssistIQ — Customer Assistant")
+st.caption("Smart Multi-Agent AI · Real-Time Support")
+st.divider()
 
-
-# ================= SESSION =================
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-
-# ================= HERO =================
+# Welcome card
 if not st.session_state.messages:
     st.markdown("""
-    <div style="text-align:center; padding:60px 20px;">
-        
-        <div style="
-            width:70px;
-            height:70px;
-            border-radius:18px;
-            background:linear-gradient(135deg,#1E3A5F,#2563EB);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            margin:auto;
-            font-size:28px;
-            color:white;
-            box-shadow:0 10px 25px rgba(37,99,235,0.3);
-        ">
-            🛍️
-        </div>
-
-        <h2 style="margin-top:20px;">How can I help you today?</h2>
-
-        <p style="color:#718096; font-size:15px;">
-            Order tracking, product recommendations, store policies, and complaint resolution.
-        </p>
-
-        <div style="margin-top:20px;">
-            <span style="background:#EBF4FF;color:#2B6CB0;padding:8px 16px;border-radius:30px;margin:6px;display:inline-block;">
-                🛍️ Products
-            </span>
-            <span style="background:#F0FFF4;color:#276749;padding:8px 16px;border-radius:30px;margin:6px;display:inline-block;">
-                📦 Orders
-            </span>
-            <span style="background:#FFFAF0;color:#975A16;padding:8px 16px;border-radius:30px;margin:6px;display:inline-block;">
-                📜 Policies
-            </span>
-            <span style="background:#FFF5F5;color:#9B2C2C;padding:8px 16px;border-radius:30px;margin:6px;display:inline-block;">
-                ⚠️ Complaints
-            </span>
-        </div>
-
+<div style="text-align:center;padding:3rem 1rem 2rem;">
+    <div style="font-size:3rem;margin-bottom:16px;">🛍️</div>
+    <div style="font-size:1.6rem;font-weight:700;color:#0F1E2E;
+                margin-bottom:10px;font-family:'Inter',sans-serif;">
+        How can I help you today?
     </div>
-    """, unsafe_allow_html=True)
+    <div style="font-size:0.9rem;color:#64748B;max-width:400px;
+                margin:0 auto 12px;line-height:1.75;">
+        Order tracking, product recommendations, store policies,
+        and complaint resolution.
+    </div>
+    <div style="font-size:0.78rem;color:#94A3B8;">
+        ← Pick a question from the sidebar or type below
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
-
-# ================= CHAT =================
+# Show chat history
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-
-# ================= INPUT =================
-user_input = st.chat_input("Ask about orders, products or policies...")
-
+# Input
+user_input = st.chat_input("Ask something...")
 if user_input:
     st.session_state.messages.append({"role": "user", "content": user_input})
-
     with st.chat_message("user"):
         st.markdown(user_input)
-
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             reply, latency = call_chat_api(user_input)
-
         st.markdown(reply)
-
         if latency:
             st.caption(f"⏱ {latency:.2f}s")
-
     st.session_state.messages.append({"role": "assistant", "content": reply})
