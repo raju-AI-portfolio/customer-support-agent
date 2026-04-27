@@ -1,8 +1,137 @@
 [
   {
     "id": 1,
-    "name": "Sample Product",
-    "description": "Test product",
-    "price": 100
+    "name": "JBL Charge 5",
+    "category": "bluetooth speaker",
+    "description": "Portable Bluetooth speaker with 20 hours battery life, waterproof IP67 rating, powerful bass, and built-in power bank to charge your devices.",
+    "price": 14999,
+    "brand": "JBL",
+    "rating": 4.6
+  },
+  {
+    "id": 2,
+    "name": "Sony SRS-XB33",
+    "category": "bluetooth speaker",
+    "description": "Extra bass Bluetooth speaker with 24 hours battery, waterproof, party connect feature to link 100+ speakers, multicolour lighting.",
+    "price": 9999,
+    "brand": "Sony",
+    "rating": 4.5
+  },
+  {
+    "id": 3,
+    "name": "Bose SoundLink Flex",
+    "category": "bluetooth speaker",
+    "description": "Premium portable Bluetooth speaker with impressive sound, waterproof, dustproof, rustproof design, 12 hours battery life.",
+    "price": 19999,
+    "brand": "Bose",
+    "rating": 4.7
+  },
+  {
+    "id": 4,
+    "name": "boAt Stone 1200",
+    "category": "bluetooth speaker",
+    "description": "14W loud speaker with RGB LEDs, 12 hours playback, waterproof IPX5 rating, TWS pairing feature, budget friendly.",
+    "price": 2499,
+    "brand": "boAt",
+    "rating": 4.2
+  },
+  {
+    "id": 5,
+    "name": "Apple AirPods Pro 2nd Gen",
+    "category": "earbuds",
+    "description": "Advanced noise cancellation, adaptive transparency, spatial audio, MagSafe charging case, 6 hours battery.",
+    "price": 24999,
+    "brand": "Apple",
+    "rating": 4.8
+  },
+  {
+    "id": 6,
+    "name": "Samsung Galaxy Buds2 Pro",
+    "category": "earbuds",
+    "description": "Premium wireless earbuds with active noise cancellation, 360 audio, 8 hours battery, IPX7 water resistance.",
+    "price": 12999,
+    "brand": "Samsung",
+    "rating": 4.4
+  },
+  {
+    "id": 7,
+    "name": "OnePlus Nord CE 3 Lite",
+    "category": "mobile",
+    "description": "6.72 inch display, 108MP camera, 5000mAh battery, Snapdragon 695, 67W fast charging, budget smartphone.",
+    "price": 19999,
+    "brand": "OnePlus",
+    "rating": 4.2
+  },
+  {
+    "id": 8,
+    "name": "Samsung Galaxy S23 FE",
+    "category": "mobile",
+    "description": "6.4 inch AMOLED display, 50MP triple camera, Exynos 2200, 4500mAh battery, 25W fast charging.",
+    "price": 34999,
+    "brand": "Samsung",
+    "rating": 4.4
+  },
+  {
+    "id": 9,
+    "name": "iPhone 15",
+    "category": "mobile",
+    "description": "6.1 inch Super Retina XDR display, A16 Bionic chip, 48MP main camera, Dynamic Island, USB-C charging.",
+    "price": 79999,
+    "brand": "Apple",
+    "rating": 4.7
+  },
+  {
+    "id": 10,
+    "name": "Lenovo IdeaPad Slim 3",
+    "category": "laptop",
+    "description": "15.6 inch FHD display, Intel Core i5 12th Gen, 8GB RAM, 512GB SSD, Windows 11, ideal for students.",
+    "price": 45999,
+    "brand": "Lenovo",
+    "rating": 4.3
+  },
+  {
+    "id": 11,
+    "name": "HP Pavilion 15",
+    "category": "laptop",
+    "description": "15.6 inch FHD IPS display, AMD Ryzen 5 5500U, 8GB RAM, 512GB SSD, backlit keyboard, Windows 11.",
+    "price": 52999,
+    "brand": "HP",
+    "rating": 4.4
+  },
+  {
+    "id": 12,
+    "name": "Sony WH-1000XM5",
+    "category": "headphones",
+    "description": "Industry leading noise cancellation, 30 hours battery, multipoint connection, speak to chat, premium sound.",
+    "price": 29999,
+    "brand": "Sony",
+    "rating": 4.8
+  },
+  {
+    "id": 13,
+    "name": "boAt Rockerz 450",
+    "category": "headphones",
+    "description": "Over ear wireless headphones with 15 hours battery, 40mm drivers, foldable design, budget friendly.",
+    "price": 1499,
+    "brand": "boAt",
+    "rating": 4.1
+  },
+  {
+    "id": 14,
+    "name": "LG 1.5 Ton 5 Star Inverter AC",
+    "category": "appliance",
+    "description": "1.5 ton split AC with 5 star energy rating, dual inverter compressor, Wi-Fi control, auto clean, 4 way swing.",
+    "price": 42999,
+    "brand": "LG",
+    "rating": 4.5
+  },
+  {
+    "id": 15,
+    "name": "Samsung 253L Double Door Refrigerator",
+    "category": "appliance",
+    "description": "253 litre double door fridge with digital inverter technology, frost free, 5 star energy rating, convertible modes.",
+    "price": 28999,
+    "brand": "Samsung",
+    "rating": 4.4
   }
 ]
