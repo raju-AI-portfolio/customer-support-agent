@@ -37,7 +37,8 @@ class ChatRequest(BaseModel):
 # ---------------- HEALTH CHECK ----------------
 @app.get("/")
 def root():
-    return {"message": "API is running"}
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="https://customer-support-agent-assist.streamlit.app/")
 
 
 # ---------------- CHAT ENDPOINT ----------------
