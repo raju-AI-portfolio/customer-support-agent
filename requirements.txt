@@ -6,4 +6,4 @@ python-dotenv
 pydantic
 requests
 streamlit
-requests
+gunicorn
