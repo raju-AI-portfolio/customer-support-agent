@@ -6,13 +6,15 @@ import time
 load_dotenv()
 
 from openai import AzureOpenAI
+from langfuse.openai import AzureOpenAI as LangfuseAzureOpenAI
+from langfuse.openai import OpenAI as LangfuseOpenAI
 
 azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
 azure_key = os.getenv("AZURE_OPENAI_API_KEY")
 azure_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-4o")
 
 if azure_endpoint and azure_key:
-    client = AzureOpenAI(
+    client = LangfuseAzureOpenAI(
         azure_endpoint=azure_endpoint,
         api_key=azure_key,
         api_version="2024-02-01"
@@ -21,7 +23,7 @@ if azure_endpoint and azure_key:
     print("✅ Using Azure OpenAI GPT-4o")
 else:
     api_key = os.getenv("OPENAI_API_KEY")
-    client = OpenAI(api_key=api_key)
+    client = LangfuseOpenAI(api_key=api_key)
     MODEL = "gpt-4.1-mini"
     print("✅ Using OpenAI GPT-4.1-mini")
 
