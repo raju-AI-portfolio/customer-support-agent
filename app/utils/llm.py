@@ -5,11 +5,25 @@ import time
 
 load_dotenv()
 
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    raise ValueError("❌ OPENAI_API_KEY not found")
+from openai import AzureOpenAI
 
-client = OpenAI(api_key=api_key)
+azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+azure_key = os.getenv("AZURE_OPENAI_API_KEY")
+azure_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-4o")
+
+if azure_endpoint and azure_key:
+    client = AzureOpenAI(
+        azure_endpoint=azure_endpoint,
+        api_key=azure_key,
+        api_version="2024-02-01"
+    )
+    MODEL = azure_deployment
+    print("✅ Using Azure OpenAI GPT-4o")
+else:
+    api_key = os.getenv("OPENAI_API_KEY")
+    client = OpenAI(api_key=api_key)
+    MODEL = "gpt-4.1-mini"
+    print("✅ Using OpenAI GPT-4.1-mini")
 
 # ── BLOCKED PATTERNS — harmful / malicious ───────────────────────────
 BLOCKED_PATTERNS = [
@@ -96,7 +110,7 @@ def call_llm(prompt: str, query: str = "", temperature: float = 0.2):
     start_time = time.time()
     try:
         response = client.chat.completions.create(
-            model="gpt-4.1-mini",
+            model=MODEL,
             messages=[{"role": "user", "content": prompt}],
             temperature=temperature,
             timeout=15
