@@ -4,7 +4,7 @@ import streamlit as st
 import requests
 from requests.exceptions import ConnectionError, Timeout, RequestException
 
-API_URL = os.getenv("ASSISTIQ_API_URL", "https://customer-support-agent-wppl.onrender.com/chat")
+API_URL = os.getenv("ASSISTIQ_API_URL", "https://customer-support-agent-h9akbjhbfna4amg5.centralindia-01.azurewebsites.net/chat")
 
 # ✅ FORCE SIDEBAR ALWAYS OPEN
 st.set_page_config(
