@@ -7,3 +7,4 @@ pydantic
 requests
 streamlit
 gunicorn
+azure-search-documents

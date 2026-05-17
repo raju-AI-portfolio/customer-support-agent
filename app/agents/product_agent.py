@@ -1,4 +1,13 @@
-from app.tools.vector_store import search_products
+import os
+from app.services.azure_search_service import search_products as azure_search
+from app.tools.vector_store import search_products as json_search
+
+def search_products(query):
+    if os.getenv("AZURE_SEARCH_KEY"):
+        results = azure_search(query)
+        if results:
+            return results
+    return json_search(query)
 from app.utils.llm import generate_response
 
 class ProductAgent:
