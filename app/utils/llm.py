@@ -113,7 +113,7 @@ def call_llm(prompt: str, query: str = "", temperature: float = 0.2):
             model=MODEL,
             messages=[{"role": "user", "content": prompt}],
             temperature=temperature,
-            timeout=15
+            timeout=60
         )
         latency = time.time() - start_time
         print(f"⏱️ LLM Latency: {latency:.2f}s")
