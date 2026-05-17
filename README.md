@@ -15,9 +15,11 @@
 
 [🌐 Live App](https://customer-support-agent-assist.streamlit.app/) · [⚡ Azure API](https://customer-support-agent-h9akbjhbfna4amg5.centralindia-01.azurewebsites.net) · [📖 API Docs](https://customer-support-agent-h9akbjhbfna4amg5.centralindia-01.azurewebsites.net/docs)
 
-</div>
 
 AssistIQ APP is live on Azure URL: https://customer-support-agent-h9akbjhbfna4amg5.centralindia-01.azurewebsites.net
+
+</div>
+
 ---
 
 ## 📌 Overview
@@ -27,6 +29,7 @@ AssistIQ is a **multi-agent AI customer support chatbot** built for e-commerce p
 The system integrates a **Streamlit frontend**, a **FastAPI backend** on **Azure App Service**, **Azure OpenAI GPT-4o** for inference, **Azure AI Search** for hybrid product search, and **Langfuse** for end-to-end LLM observability — with a three-stage guardrail pipeline (safety → relevance → output sanitisation).
 
 ---
+
 
 ## ✨ Features
 
