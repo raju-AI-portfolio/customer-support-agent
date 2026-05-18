@@ -393,7 +393,7 @@ Applied Generative AI — April 2026
 - 🌐 App: [customer-support-agent-assist.streamlit.app](https://customer-support-agent-assist.streamlit.app/)
 - 💼 LinkedIn: [linkedin.com/in/programdirectorai](https://www.linkedin.com/in/programdirectorai)
 - 🐙 GitHub: [github.com/raju-AI-portfolio](https://github.com/raju-AI-portfolio)
-
+- Project Report: https://github.com/raju-AI-portfolio/customer-support-agent/blob/f55d8b739bdd2420ecc5074e22bc7cf086c3bc50/Multiagent%20%20Customer%20Support%20Project%20Report.pdf
 ---
 
 ## 📄 License
