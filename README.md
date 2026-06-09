@@ -18,6 +18,8 @@
 
 AssistIQ APP is live on Azure URL: https://customer-support-agent-h9akbjhbfna4amg5.centralindia-01.azurewebsites.net
 
+AssistIQ APP is live on Render URL: https://customer-support-agent-assist.streamlit.app/
+
 </div>
 
 ---
