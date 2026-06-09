@@ -15,10 +15,10 @@
 
 [🌐 Live App](https://customer-support-agent-assist.streamlit.app/) · [⚡ Azure API](https://customer-support-agent-h9akbjhbfna4amg5.centralindia-01.azurewebsites.net) · [📖 API Docs](https://customer-support-agent-h9akbjhbfna4amg5.centralindia-01.azurewebsites.net/docs)
 
+AssistIQ APP is live on Render URL: https://customer-support-agent-assist.streamlit.app/
 
 AssistIQ APP is live on Azure URL: https://customer-support-agent-h9akbjhbfna4amg5.centralindia-01.azurewebsites.net
 
-AssistIQ APP is live on Render URL: https://customer-support-agent-assist.streamlit.app/
 
 </div>
 
